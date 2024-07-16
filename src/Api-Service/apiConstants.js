@@ -1,6 +1,6 @@
 const apiUrl = {
-  BASEURL: "http://localhost:8082/api",
-  IMAGEURL: "http://localhost:8082",
+  BASEURL: "https://api.proleverage.io/api",
+  IMAGEURL: "https://api.proleverage.io",
   GET_WEB_BANNER: "/banner/getwebbanner",
   GET_APP_BANNER: "/banner/getappbanner",
   CREATE_BANNERS: "/banner/createbanner",
