@@ -193,13 +193,13 @@ function SideBar() {
             1:1 Sessions
           </MenuItem> */}
 
-          <MenuItem
+          {/* <MenuItem
             className="sidebar-font-menu"
             component={<Link to="/dashboard" />}
             icon={<SiGoogleanalytics className="sidebar-icons" />}
           >
             Analytics
-          </MenuItem>
+          </MenuItem> */}
 
           {/* People===================== */}
           <SubMenu
