@@ -92,7 +92,7 @@ function UserProfile() {
   // console.log("watchedPercentage", watchedPercentage);
   return (
     <div>
-      <div className="d-flex justify-between">
+      <div className="d-flex justify-between" style={{flexDirection:"row",justifyContent:"space-between"}} >
         <div className="headerTitle-0-1-70">{usersData?.name}</div>
         {showCourses ? (
           <div className="mt-2">
@@ -137,12 +137,12 @@ function UserProfile() {
               </div>
               <div className="profilePic-0-1-1117">
                 <div className="profileImageContainer-0-1-1127">
-                  <img
+                  {/* <img
                     src={`${apiUrl.IMAGEURL}/user/${usersData.profilePicture}`}
                     alt=""
                     style={styles.userProfilePic}
-                  />
-                  {/* <div className="studentInitials-0-1-1128">{matches} </div> */}
+                  /> */}
+                  <div className="studentInitials-0-1-1128">{matches} </div>
                 </div>
               </div>
             </div>

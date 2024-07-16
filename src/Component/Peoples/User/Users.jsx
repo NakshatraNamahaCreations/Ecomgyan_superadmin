@@ -84,11 +84,11 @@ function Users() {
             onClick={() => handleOpeningCanvas(row)}
           >
             <div>
-              <img
+              {/* <img
                 src={`${apiUrl.IMAGEURL}/user/${row.profilePicture}`}
                 alt=""
                 style={styles.userProfilePic}
-              />
+              /> */}
             </div>
             <div>
               <div className="name-0-1-582">{row.name}</div>
@@ -110,11 +110,11 @@ function Users() {
     //   selector: (row) => "",
     //   sortable: true,
     // },
-    {
-      name: " Action",
-      // selector: (row) => row.year,
-      // sortable: true,
-    },
+    // {
+    //   name: " Action",
+    //   selector: (row) => row.year,
+    //   sortable: true,
+    // },
   ];
   const styles = {
     inputStyle: {
@@ -179,7 +179,7 @@ function Users() {
         </div> */}
       </div>
       {/* Table */}
-      <div className="TableHeaderContainer-0-1-672">
+      <div className="TableHeaderContainer-0-1-672" style={{width:"50%"}} >
         <DataTable columns={columns} data={allUsers} defaultSortFieldId={1} />
       </div>
       {/* open canvas */}

@@ -61,7 +61,7 @@ function CreateCampaign() {
             </button>
           </div>
         </div>
-        <div class="box-0-1-793">
+        {/* <div class="box-0-1-793">
           <div class="boxColor-0-1-58">
             <p class="boxText-0-1-61">One-Time Campaign</p>
             <div class="lists-0-1-794">
@@ -90,7 +90,7 @@ function CreateCampaign() {
               Create One-Time Campaign
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="footerNavContainer-0-1-444 footerNavContainer-d0-0-1-457">
         <Button

@@ -230,7 +230,10 @@ function StartChat() {
                     reversedConversationList.length > 0
                       ? reversedConversationList[0].chat
                       : "Start a conversation";
-
+                      const messageTime =
+                    reversedConversationList.length > 0
+                      ? reversedConversationList[0].timestamp
+                      : "";
                   return (
                     <div onClick={() => handleChatItemClick(user)} key={index}>
                       <div
@@ -251,7 +254,10 @@ function StartChat() {
                             <span>{user.name}</span>
                             <span className="List_lastActive__5BsgZ">
                               <div className="DateTime_time__2LwRn List_marginZero__39KOC">
-                                02:05 am
+                               {messageTime ? moment(messageTime).format('h:mm a') : ''}
+
+                                {/* {moment(messageTime).format("LT")} */}
+                                {/* 02:05 am */}
                               </div>
                             </span>
                           </div>
@@ -362,7 +368,8 @@ function StartChat() {
                                         </span>
                                       </div>
                                       <span class="MsgItem_timeStamp__2Wifz">
-                                        12:55 pm
+                                        {/* new Date(timestamp).toISOString().split('T')[1].split('.')[0]{new Date(timestamp).toISOString().split('T')[1].split('.')[0]} */}
+                                        {moment(chat.timestamp).format("LT")}
                                       </span>
                                     </div>
                                   </span>

@@ -62,7 +62,7 @@ function AddVideo() {
       let config = {
         url: "/freematerial/addlink",
         method: "post",
-        baseURL: "http://localhost:8081/api",
+        baseURL: "https://api.proleverage.io/api",
         headers: {
           "Content-Type": "application/json",
         },

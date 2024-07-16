@@ -113,7 +113,7 @@ function AddDocument() {
         "/freematerial/adddocuments",
         formData,
         {
-          baseURL: "http://localhost:8081/api",
+          baseURL: "https://api.proleverage.io/api",
         }
       );
       if (response.status === 200) {

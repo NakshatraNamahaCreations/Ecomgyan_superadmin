@@ -203,11 +203,11 @@ function ManageCoupons() {
                                 ></i>
                                 {showDropDown[index] && (
                                   <div class="menu transition CouponListCard_threeDotsMenu__18VGG">
-                                    <div
+                                    {/* <div
                                       class="item an-dr-menu"
                                       onClick={() => editCoupon(openCouponObj)}
                                     >
-                                      {/* <a href="/coupons/65f44901a192c01c125619d8/edit"> */}
+                                      
                                       <div class="flexrow alignCenter CouponListCard_couponMenuListItem__2N4JD">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                         <span
@@ -219,8 +219,8 @@ function ManageCoupons() {
                                           Details
                                         </span>
                                       </div>
-                                      {/* </a> */}
-                                    </div>
+                                     
+                                    </div> */}
                                     <div class="item an-dr-menu">
                                       {/* <a href="/coupons/65f44901a192c01c125619d8/edit"> */}
 
@@ -309,16 +309,16 @@ function ManageCoupons() {
                                   {coupon.endTime}
                                 </span>
                               </div>
-                              <span class="CouponListCard_divider__2I5BA">
+                              {/* <span class="CouponListCard_divider__2I5BA">
                                 |
                               </span>
                               <button class="sc-jTzLTM dQcZQY" color="primary">
                                 Used 0 times
-                              </button>
+                              </button> */}
                             </div>
-                            <button class="sc-jTzLTM dQcZQY" color="primary">
+                            {/* <button class="sc-jTzLTM dQcZQY" color="primary">
                               Show Details
-                            </button>
+                            </button> */}
                           </div>
                         </div>
                       </div>
