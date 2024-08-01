@@ -70,6 +70,15 @@ const Header = () => {
           </div>
         </div>
       );
+    case "/app/broadcasting":
+      return (
+        <div>
+          <div className="headerTitle-0-1-70">Broadcasting</div>
+          {/* <div className="headerDesc-0-1-71">
+              <div>Add / view youtube video for mobile app</div>
+            </div> */}
+        </div>
+      );
     case "/content/free-material":
       return (
         <div>

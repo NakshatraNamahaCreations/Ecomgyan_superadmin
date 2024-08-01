@@ -408,7 +408,7 @@ function AddResources() {
             <div className="d-flex p-2" style={styles.insideBox}>
               <i class="fa-solid fa-circle-plus me-1"></i>{" "}
               <input
-                accept="image/jpeg,image/jpeg,image/png,application/pdf"
+                accept="image/jpeg,image/jpg,image/png,application/pdf"
                 style={{ display: "none" }}
                 id="icon-button-file"
                 type="file"

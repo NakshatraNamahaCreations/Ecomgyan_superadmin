@@ -6,6 +6,7 @@ import { getData, postData } from "../../Api-Service/apiHelper";
 import { apiUrl } from "../../Api-Service/apiConstants";
 import { PiWechatLogoDuotone } from "react-icons/pi";
 import moment from "moment";
+import { io } from "socket.io-client";
 
 function StartChat() {
   var settings = {
@@ -33,6 +34,8 @@ function StartChat() {
   const [filterdata, setfilterdata] = useState([]);
 
   const [startConversations, setStartConversations] = useState("");
+  const [socket, setSocket] = useState(null);
+
   const [chatColors, setChatColors] = useState(
     Array.from({ length: 5 }, () => getRandomColor())
   );
@@ -66,10 +69,6 @@ function StartChat() {
     searchResults();
   }, [searchUser]);
 
-  const handleChatItemClick = (chat) => {
-    setSelectedChat(chat);
-  };
-
   const getInitialsFromName = (user) => {
     const regex = /\b\w/g;
     const matches = user.name?.match(regex);
@@ -91,32 +90,63 @@ function StartChat() {
       console.log("No matches found.");
     }
   };
+
+  useEffect(() => {
+    // Connect to the socket server
+    const newSocket = io(`${apiUrl}`);
+    setSocket(newSocket);
+
+    // Clean up the connection when the component unmounts
+    return () => newSocket.close();
+  }, []);
+  useEffect(() => {
+    if (socket) {
+      socket.on("receiveMessage", (message) => {
+        setSelectedChat((prevSelectedChat) => {
+          if (prevSelectedChat && prevSelectedChat._id === message.senderId) {
+            return {
+              ...prevSelectedChat,
+              conversationList: [...prevSelectedChat.conversationList, message],
+            };
+          }
+          return prevSelectedChat;
+        });
+      });
+    }
+  }, [socket]);
+
+  const handleChatItemClick = (chat) => {
+    setSelectedChat(chat);
+  };
+
   const sendMessage = async (selectedUser) => {
     if (!startConversations.trim()) {
       alert("Please type message");
     } else {
       try {
         const data = {
+          userId: "your_user_id", // Replace with your actual user ID
           chat: startConversations,
+          receiverId: selectedUser._id,
         };
 
+        // Send message to server via socket
+        socket.emit("sendMessage", data);
+
+        // Optimistically update the UI
         setSelectedChat((prevSelectedChat) => ({
           ...prevSelectedChat,
           conversationList: [
             ...prevSelectedChat.conversationList,
-            { chat: startConversations, timestamp: new Date() }, // Add new message immediately
+            {
+              chat: startConversations,
+              timestamp: new Date(),
+              senderId: data.userId,
+            },
           ],
         }));
 
-        const res = await postData(
-          `${apiUrl.START_MESSAGE}${selectedUser._id}`,
-          data
-        );
-        if (res) {
-          // alert("message sent");
-          console.log("res", res);
-          setStartConversations(" ");
-        }
+        setStartConversations("");
       } catch (error) {
         console.error("Error:", error);
       }
@@ -230,7 +260,7 @@ function StartChat() {
                     reversedConversationList.length > 0
                       ? reversedConversationList[0].chat
                       : "Start a conversation";
-                      const messageTime =
+                  const messageTime =
                     reversedConversationList.length > 0
                       ? reversedConversationList[0].timestamp
                       : "";
@@ -254,7 +284,9 @@ function StartChat() {
                             <span>{user.name}</span>
                             <span className="List_lastActive__5BsgZ">
                               <div className="DateTime_time__2LwRn List_marginZero__39KOC">
-                               {messageTime ? moment(messageTime).format('h:mm a') : ''}
+                                {messageTime
+                                  ? moment(messageTime).format("h:mm a")
+                                  : ""}
 
                                 {/* {moment(messageTime).format("LT")} */}
                                 {/* 02:05 am */}

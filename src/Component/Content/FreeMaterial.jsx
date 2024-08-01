@@ -16,7 +16,7 @@ function FreeMaterial() {
         </div>
         <div class="heading-0-1-89">Document</div>
         <div class="description-0-1-90">
-          File type Includes .doc, .docx, .pdf, .png, .jpg, .csv etc
+          File type Includes .pdf, .png, .jpg, jpeg etc
         </div>
         {/* </a> */}
       </div>
@@ -26,12 +26,12 @@ function FreeMaterial() {
       >
         <div class="iconContainer-0-1-88">
           <i
-            class="fa-brands fa-youtube"
+            class="fa-solid fa-video"
             style={{ color: "#ff0000", fontSize: "50px" }}
           ></i>
         </div>
         <div class="heading-0-1-89">Video</div>
-        <div class="description-0-1-90">Supported link : Youtube URL</div>
+        <div class="description-0-1-90">Video URL</div>
       </div>
     </div>
   );

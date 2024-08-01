@@ -79,12 +79,12 @@ function AddCourse() {
       const videoRes = await getData(apiUrl.GET_FREEMATERIAL_VIDEO);
       const documentRes = await getData(apiUrl.GET_FREEMATERIAL_DOCUMENT);
       setAllVideo(videoRes.data);
-      setAllDocs(documentRes.data.flatMap((docs) => docs.materialDocuments));
+      setAllDocs(documentRes.data);
     } catch (error) {
       console.error("Error:", error);
     }
   };
-  console.log("allVideo", "allDocs", allVideo);
+  console.log("allVideo", "allDocs", allVideo, allDocs);
 
   const handleDoc = (e, newValue) => {
     if (newValue) {

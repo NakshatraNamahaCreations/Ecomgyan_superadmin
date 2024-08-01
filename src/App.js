@@ -26,6 +26,8 @@ import EditTeam from "./Component/Peoples/Team/EditTeam";
 import StartChat from "./Component/Chat/StartChat";
 import AddResources from "./Component/Courses/AddResources";
 import YoutubeVideo from "./Component/YourApp/YoutubeVideo";
+import Chat from "./Component/Chat/chat";
+import BroadCating from "./Component/YourApp/BroadCating";
 
 function App() {
   return (
@@ -179,6 +181,20 @@ function App() {
             />
           }
         />
+        <Route
+          path="/app/broadcasting"
+          element={
+            <Layout
+              Children={
+                <>
+                  <Header />
+                  <BroadCating />
+                </>
+              }
+            />
+          }
+        />
+
         {/* Content */}
         <Route
           path="/content/free-material"
@@ -340,9 +356,55 @@ function App() {
             />
           }
         />
+        <Route
+          path="/cchat"
+          element={
+            <Layout
+              Children={
+                <>
+                  <Header />
+                  <Chat />
+                </>
+              }
+            />
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
 }
 
 export default App;
+
+// import React, { useState } from "react";
+// import { BrowserRouter, Route, Routes } from "react-router-dom";
+// import Chat from "./Chat";
+// import CreateGroup from "./CreateGroup";
+// import Register from "./Register";
+// import Login from "./Login";
+
+// const App = () => {
+//   const [user, setUser] = useState(null);
+
+//   return (
+//     <BrowserRouter>
+//       <Routes>
+//         <Route path="/register" component={Register} />
+//         <Route path="/login">
+//           <Login setUser={setUser} />
+//         </Route>
+//         <Route path="/create-group" component={CreateGroup} />
+//         {user && (
+//           <Route path="/chat/:groupId">
+//             <Chat userId={user._id} />
+//           </Route>
+//         )}
+//         <Route path="/">
+//           <div>Welcome to the Chat App</div>
+//         </Route>
+//       </Routes>
+//     </BrowserRouter>
+//   );
+// };
+
+// export default App;

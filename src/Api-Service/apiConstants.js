@@ -1,6 +1,6 @@
 const apiUrl = {
-  BASEURL: "https://api.proleverage.io/api",
-  IMAGEURL: "https://api.proleverage.io",
+  BASEURL: "http://localhost:8082/api",
+  IMAGEURL: "http://localhost:8082",
   GET_WEB_BANNER: "/banner/getwebbanner",
   GET_APP_BANNER: "/banner/getappbanner",
   CREATE_BANNERS: "/banner/createbanner",
@@ -43,12 +43,12 @@ const apiUrl = {
   INACTIVE_COUPON: "/coupon/makecouponinactive/",
   APPLY_COUPON_FOR_COURSE: "/coupon/applycouponforcourse/",
   REMOVE_COURSE_FROM_COUPON: "/coupon/deletecoursefromcoupon/",
-  ADD_FREEMATERIAL_DOCUMENT: "/freematerial/adddocuments",
-  GET_FREEMATERIAL_DOCUMENT: "/freematerial/getalldocument",
-  DELETE_FREEMATERIAL_DOCUMENT: "/freematerial/deletedocuments/",
-  DELETE_FREEMATERIAL_VIDEO: "/freematerial/deletevideo/",
-  ADD_FREEMATERIAL_VIDEO: "/freematerial/addlink",
-  GET_FREEMATERIAL_VIDEO: "/freematerial/getallvideo",
+  ADD_FREEMATERIAL_DOCUMENT: "/freematerial-document/adddocuments",
+  GET_FREEMATERIAL_DOCUMENT: "/freematerial-document/getalldocument",
+  DELETE_FREEMATERIAL_DOCUMENT: "/freematerial-document/deletedocuments/",
+  DELETE_FREEMATERIAL_VIDEO: "/freematerial-video/deletevideo/",
+  ADD_FREEMATERIAL_VIDEO: "/freematerial-video/addlink",
+  GET_FREEMATERIAL_VIDEO: "/freematerial-video/getallvideo",
   ADD_TEAMMEMBER: "/team/addteammember",
   GET_PARTICULAR_MEMBER: "/team/getteammember/",
   GET_ALL_TEAMMEMBER: "/team/getallteammembers",
@@ -63,6 +63,10 @@ const apiUrl = {
   CREATE_NOTIFICATION: "/notification/createnotifications/",
   GET_ALL_NOTIFICATIONS: "/notification/getallnotifications",
   DELETE_NOTIFICATIONS: "/notification/deletenotification/",
+
+  CREATE_BROADCAST: "/broadcasting/createbroadcast",
+  GET_ALL_BROADCAST: "/broadcasting/getallbroadcast",
+  DELETE_BROADCAST: "/broadcasting/deletebroadcast/",
 };
 
 export { apiUrl };

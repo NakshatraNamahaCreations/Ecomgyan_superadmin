@@ -184,6 +184,28 @@ function SideBar() {
             >
               Youtube Video
             </MenuItem>
+            <MenuItem
+              className="sidebar-font-submenu"
+              component={<Link to="/app/broadcasting" />}
+              style={{
+                borderLeft: getBorderLeft("/app/broadcasting"),
+                color: getColor("/app/broadcasting"),
+                // borderRadius: getBorderRadius("#"),
+              }}
+            >
+              Broadcast
+            </MenuItem>
+            {/* <MenuItem
+              className="sidebar-font-submenu"
+              component={<Link to="/app/in-app-notification" />}
+              style={{
+                borderLeft: getBorderLeft("/app/in-app-notification"),
+                color: getColor("/app/in-app-notification"),
+                // borderRadius: getBorderRadius("#"),
+              }}
+            >
+              In App Notification
+            </MenuItem> */}
           </SubMenu>
           {/* <MenuItem
             className="sidebar-font-menu"

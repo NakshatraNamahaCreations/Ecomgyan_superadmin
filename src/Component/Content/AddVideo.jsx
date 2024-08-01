@@ -60,15 +60,14 @@ function AddVideo() {
   const addvideo = async () => {
     try {
       let config = {
-        url: "/freematerial/addlink",
+        url: apiUrl.ADD_FREEMATERIAL_VIDEO,
         method: "post",
-        baseURL: "https://api.proleverage.io/api",
+        baseURL: apiUrl.BASEURL,
         headers: {
           "Content-Type": "application/json",
         },
         data: {
           youtubeLink: videolink,
-          materialType: "video",
           thumbnailTitle: Videotitle,
         },
       };
@@ -281,13 +280,13 @@ function AddVideo() {
             />
             <br /> <br />
             <label>
-              <b>YouTube link</b>
+              <b>Video Url Link</b>
             </label>
             <br />
             <input
               class="mt-2 input-0-1-685 input-d15-0-1-1047 uploadText-0-1-649 uploadText-d63-0-1-1036"
               type="text"
-              placeholder="Enter or Paste YouYube Link"
+              placeholder="Enter or Paste Video Link"
               onChange={(e) => setvideolink(e.target.value)}
             />
             {/* </div> */}
