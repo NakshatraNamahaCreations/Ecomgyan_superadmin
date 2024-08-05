@@ -101,9 +101,7 @@ function CourseOverview() {
 
       // const imageRes = await getData(`${apiUrl.GET_ALL_IMAGE}`);
 
-      setAllMaterialDocs(
-        materialDocumentRes.data.flatMap((docs) => docs.materialDocuments)
-      );
+      setAllMaterialDocs(materialDocumentRes.data);
       setCouponList(couponRes.data);
       // setAllImages(imageRes.data);
       setAllMaterialVideo(materialVideo.data);
@@ -165,9 +163,9 @@ function CourseOverview() {
     }
   }, [price, discount]);
   // console.log("allDocs", allMaterialDocs);
-  const getCourseDocumentObj = allMaterialDocs?.filter(
-    (doc) => doc._id === courseData.materialDocsId
-  );
+  // const getCourseDocumentObj = allMaterialDocs?.filter(
+  //   (doc) => doc._id === courseData.materialDocsId
+  // );
   // console.log("getCourseDocumentObj", getCourseDocumentObj);
 
   const navigateToModuleOverview = () => {
@@ -426,7 +424,7 @@ function CourseOverview() {
                       disablePortal
                       id="combo-box-demo"
                       options={allMaterialVideo}
-                      getOptionLabel={(option) => option.Videotitle}
+                      getOptionLabel={(option) => option.thumbnailTitle}
                       renderInput={(params) => (
                         <TextField {...params} label="Select video" />
                       )}

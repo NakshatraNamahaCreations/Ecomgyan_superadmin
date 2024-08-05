@@ -165,9 +165,9 @@ const Header = () => {
       return (
         <div>
           <div className="headerTitle-0-1-70">Chat</div>
-          <div className="headerDesc-0-1-71">
+          {/* <div className="headerDesc-0-1-71">
             <div>Send messages to your students on a daily basis</div>
-          </div>
+          </div> */}
         </div>
       );
     default:

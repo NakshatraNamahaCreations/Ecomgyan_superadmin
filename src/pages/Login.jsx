@@ -1,134 +1,14 @@
-// import React, { useState } from "react";
-// import "./login.css";
-// import { InputGroup, Form } from "react-bootstrap";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
-// import axios from "axios";
-
-// function Login() {
-//   // const login = () => {
-//   //   window.location.assign("/dashboard");
-//   // };
-//   const [emailOrName, setemailOrName] = useState("");
-//   const [password, setpassword] = useState("");
-
-//   const login = async (e) => {
-//     e.preventDefault();
-//     try {
-//       const config = {
-//         url: "/adminlogin/adminsignin",
-//         method: "post",
-//         baseURL: "http://localhost:8082/api",
-//         headers: { "content-type": "application/json" },
-//         data: { email: emailOrName, password: password },
-//       };
-//       await axios(config).then(function (response) {
-//         if (response.status === 200) {
-//           toast("🦄 Login succesfull", {
-//             position: "top-right",
-//             autoClose: 5000,
-//             hideProgressBar: false,
-//             closeOnClick: true,
-
-//             pauseOnHover: true,
-//             draggable: true,
-//             progress: undefined,
-//             theme: "light",
-//           });
-
-//           localStorage.setItem("ecomAdmin", JSON.stringify(response.data.user));
-
-//           window.location.assign("/dashboard");
-//         } else {
-//           // alert(data.response);
-//           alert(response.data.error);
-//         }
-//       });
-//     } catch (error) {
-//       toast.error("Invalid email or password", {
-//         position: "top-right",
-//         autoClose: 5000,
-//         hideProgressBar: false,
-//         closeOnClick: true,
-//         pauseOnHover: true,
-//         draggable: true,
-//         progress: undefined,
-//         theme: "light",
-//       });
-//     }
-//   };
-
-//   return (
-//     <div className="row me-0">
-//       <ToastContainer position="top-right" />
-//       <div className="col-md-6" style={{ backgroundColor: "#F7FAFC" }}>
-//         <div style={{ padding: "100px" }}>
-//           <p class="login-left-heading">The future of education is here</p>
-//           <p class="login-left-subheading">
-//             {" "}
-//             With an all in one platform for the teaching world
-//           </p>
-//         </div>
-//         <div>
-//           {/* <img
-//             src="login-image.jpg"
-//             alt=""
-//             style={{ position: "absolute", width: "100px", left: "5%" }}
-//           /> */}
-//         </div>
-//       </div>
-//       <div className="col-md-6" style={{ padding: "100px" }}>
-//         <p class="accountLogin-heading">Login to your account</p>
-//         <p class="accountLogin-subHeading">
-//           Please enter your mobile number to continue
-//         </p>
-//         <div>
-//           <div class="accountLogin-mobile-field">
-//             <InputGroup className="mb-3">
-//               <InputGroup.Text id="basic-addon1"></InputGroup.Text>
-//               <Form.Control
-//                 // type="number"
-//                 placeholder="Email id"
-//                 aria-label="Email id"
-//                 aria-describedby="basic-addon1"
-//                 onChange={(e) => setemailOrName(e.target.value)}
-//               />
-//             </InputGroup>
-//           </div>
-//           <div class="accountLogin-mobile-field">
-//             <InputGroup className="mb-3">
-//               <InputGroup.Text id="basic-addon1"></InputGroup.Text>
-//               <Form.Control
-//                 // type="number"
-//                 placeholder="Password"
-//                 aria-label="Password"
-//                 aria-describedby="basic-addon1"
-//                 onChange={(e) => setpassword(e.target.value)}
-//               />
-//             </InputGroup>
-//           </div>
-//           <button className="accountLogin-btn" onClick={login}>
-//             Login
-//           </button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Login;
-
 import React from "react";
 import { useEffect } from "react";
-
+import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
-
+import { googleAuth } from "../apis/auth";
 import { useState } from "react";
-import { loginUser } from "../../apis/auth";
+import { loginUser } from "../apis/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { BsEmojiLaughing, BsEmojiExpressionless } from "react-icons/bs";
 import { toast } from "react-toastify";
-import { validUser } from "../../apis/auth";
+import { validUser } from "../apis/auth";
 const defaultData = {
   email: "",
   password: "",
@@ -138,7 +18,23 @@ function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [showPass, setShowPass] = useState(false);
   const pageRoute = useNavigate();
+  const googleSuccess = async (res) => {
+    if (res?.profileObj) {
+      console.log(res.profileObj);
+      setIsLoading(true);
+      const response = await googleAuth({ tokenId: res.tokenId });
+      setIsLoading(false);
 
+      console.log("response :" + res);
+      if (response.data.token) {
+        localStorage.setItem("userToken", response.data.token);
+        pageRoute("/chats");
+      }
+    }
+  };
+  const googleFailure = (error) => {
+    // toast.error("Something went Wrong.Try Again!")
+  };
   const handleOnChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -152,7 +48,7 @@ function Login() {
         localStorage.setItem("userToken", data.token);
         toast.success("Succesfully Login!");
         setIsLoading(false);
-        pageRoute("/dashboard");
+        pageRoute("/chats");
       } else {
         setIsLoading(false);
         toast.error("Invalid Credentials!");
@@ -175,7 +71,7 @@ function Login() {
     const isValid = async () => {
       const data = await validUser();
       if (data?.user) {
-        window.location.href = "/dashboard";
+        window.location.href = "/chats";
       }
     };
     isValid();

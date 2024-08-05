@@ -1,3 +1,25 @@
+// import Login from './pages/Login';
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import Regsiter from './pages/Regsiter';
+// import Home from './pages/Home';
+// import Start from './components/Start';
+
+// function App() {
+//   return (
+//     <div className="bg-[#F8F4EA]">
+//       <Router>
+//         <Routes>
+//           <Route exact path="/login" element={<Login />} />
+//           <Route exact path="/register" element={<Regsiter />} />
+//           <Route exact path="/chats" element={<Home />} />
+//           <Route exact path="/" element={<Start />} />
+//         </Routes>
+//       </Router>
+//     </div>
+//   );
+// }
+
+// export default App;
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./Component/Layouts/Layout";
 import Dashboard from "./Component/Dashboard";
@@ -28,6 +50,8 @@ import AddResources from "./Component/Courses/AddResources";
 import YoutubeVideo from "./Component/YourApp/YoutubeVideo";
 import Chat from "./Component/Chat/chat";
 import BroadCating from "./Component/YourApp/BroadCating";
+import Home from "./pages/Home";
+import Regsiter from "./pages/Regsiter";
 
 function App() {
   return (
@@ -48,6 +72,7 @@ function App() {
             />
           }
         />
+        <Route exact path="/chats" element={<Home />} />
         {/* website */}
         <Route
           path="/website/manage-pages"
@@ -342,6 +367,8 @@ function App() {
             />
           }
         />
+
+        <Route exact path="/register" element={<Regsiter />} />
         {/* chat */}
         <Route
           path="/chat"
@@ -350,7 +377,7 @@ function App() {
               Children={
                 <>
                   <Header />
-                  <StartChat />
+                  <Home />
                 </>
               }
             />
